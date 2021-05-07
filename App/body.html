@@ -1,0 +1,122 @@
+<!-- Copyright (c) 2020 8th Wall, Inc. -->
+<!-- body.html is optional; elements will be added to your html body after app.js is loaded. -->
+
+<!-- should include open-gift-->
+
+<div id="nextbutton" style="display: none; z-index: 10">
+    <h2>Tap here</h2>
+  </div>
+  
+  <a-scene
+    next-button
+    physics="iterations: 1"
+    xrextras-gesture-detector
+    xrextras-almost-there
+    xrextras-loading
+    xrextras-runtime-error
+    renderer="colorManagement:true"
+    xrweb= "disableWorldTracking: true">
+  
+     <a-assets>
+      <a-asset-item id="santa" src = "assets/santa2S.glb"></a-asset-item>
+      <a-asset-item id="tree-glb" src="assets/tree.glb"></a-asset-item>
+      <a-asset-item id="treewithlight" src="assets/treewithlight.glb"></a-asset-item>
+      <a-asset-item id="snow-glb" src="assets/snow1.glb"></a-asset-item>
+      <img id=christmas src="assets/christmas-card.jpg">
+      <img id= snowPic src="assets/snowground.png">
+      <img id="christmasthumb" src="assets/christmasthumb.png">
+      <video
+        id="HPChristmas"
+        autoplay
+        crossorigin="anonymous"
+        loop="true"
+        src="assets/ChristmasVideo.mp4">
+      </video>
+  
+       <video
+        id="CMusic"
+        autoplay
+        crossorigin="anonymous"
+        loop="true"
+        src="assets/ChristmasSong.mp4">
+      </video>
+      
+    </a-assets>
+  
+    <a-camera
+      position="0 4 10"
+      raycaster="objects: .cantap"
+      cursor="fuse: false; rayOrigin: mouse;">
+    </a-camera>
+  
+    <a-entity 
+      light="
+        type: directional;
+        intensity: 0.8;
+        castShadow: true;
+        shadowMapHeight:2048;
+        shadowMapWidth:2048;
+        shadowCameraTop: 20;
+        shadowCameraBottom: -20;
+        shadowCameraRight: 20;
+        shadowCameraLeft: -20;
+        target: #camera"
+      xrextras-attach="target: camera; offset: 0 15 0"
+      position="1 4.3 2.5"
+      shadow>
+    </a-entity>
+     
+    <a-light type="ambient" intensity="0.7"></a-light>
+  
+  <!-- Christmas Card
+   <a-plane src="#snowPic" geometry="primitive: plane; height= 1; width=1.5;"></a-plane>
+  -->
+      <xrextras-named-image-target name="christmas-card">
+      <a-entity 
+        xrextras-play-video="video: #CMusic;  thumb: #snowPic; canstop: true"
+        geometry="primitive: plane; height: 0.75; width: 1.0"; loop= "true"
+      ></a-entity>
+      <a-scene>
+      <a-entity gltf-model= "#snow-glb" position="0.3 1.1 1" animation="property: position; to: 0 0 -1; dur: 9000; easing: linear; loop: true"></a-entity>
+      <a-entity gltf-model= "#snow-glb" position="-0.5 1.0 2" animation="property: position; to: 0.6 0 0; dur: 8000; easing: linear; loop: true"></a-entity>
+      <a-entity gltf-model= "#snow-glb" position="-1 1.0 1" animation="property: position; to: 0.2 0 0; dur: 4000; easing: linear; loop: true"></a-entity>
+      <a-entity gltf-model= "#snow-glb" position="0.5 2.0 1" animation="property: position; to: 0.9 0 -1; dur: 6000; easing: linear; loop: true"></a-entity>
+      <a-entity gltf-model= "#snow-glb" position="-0.3 1.0 1" animation="property: position; to: -1 -0 0; dur: 3000; easing: linear; loop: true"></a-entity>
+      <a-entity gltf-model= "#snow-glb" position="1 2.0 1" animation="property: position; to: -0.7 -0 -0.9; dur: 7000; easing: linear; loop: true"></a-entity>
+      <a-entity gltf-model= "#snow-glb" position="-1.1 1.0 1" animation="property: position; to: -1.5 -3.0; dur: 5000; easing: linear; loop: true"></a-entity>
+      <a-entity gltf-model= "#snow-glb" position="0.1 -1.0 1" animation="property: position; to: -0.5 0 -2; dur: 9000; easing: linear; loop: true"></a-entity>
+      <a-entity gltf-model= "#snow-glb" position="0.45 0.5 1" animation="property: position; to: 1.0 0 -5; dur: 6000; easing: linear; loop: true"></a-entity>
+      <a-entity gltf-model= "#snow-glb" position="-0.2 1.0 1" animation="property: position; to: -0.2 0 0; dur: 5000; easing: linear; loop: true"></a-entity>
+      <a-entity gltf-model= "#snow-glb" position="-0.5 1.0 1" animation="property: position; to: -1 -2 -1.5; dur: 3000; easing: linear; loop: true"></a-entity>
+      <a-entity id="model" gltf-model="#tree-glb" position= "-0.1 0.3 0" rotation="90 0 0"></a-entity>
+      <a-entity id="model" gltf-model="#tree-glb" position= "0.5 0.3 0" rotation="90 0 0"></a-entity>
+      <a-entity id="model" gltf-model="#tree-glb" position= "-0.4 0.2 0" rotation="90 0 0"></a-entity>
+      <a-entity id="model" gltf-model="#tree-glb" position= "0.2 0.2 0" rotation="90 0 0"></a-entity>
+      <a-entity id="model" gltf-model="#tree-glb" position= "-0.2 0.1 0" rotation="90 0 0"></a-entity>
+      <a-entity id="model" gltf-model="#tree-glb" position= "-0.45 -0.05 0" rotation="90 0 0"></a-entity>
+      <a-entity id="model" gltf-model="#tree-glb" position= "0.45 0.05 0" rotation="90 0 0"></a-entity>
+      <a-entity id="model" gltf-model="#tree-glb" position= "0 0 0" rotation="90 0 0"></a-entity>
+      <a-entity id="model" gltf-model="#tree-glb" position= "-0.25 -0.2 0" rotation="90 0 0"></a-entity>
+      <a-entity id="model" gltf-model="#tree-glb" position= "0.1 -0.2 0" rotation="90 0 0"></a-entity>
+      <a-entity id="model" gltf-model="#tree-glb" position= "0.45 -0.3 0" rotation="90 0 0"></a-entity>
+      <a-entity id="model" gltf-model="#tree-glb" position= "0.3 -0.1 0" rotation="90 0 0"></a-entity>
+      <a-entity id="model" gltf-model="#tree-glb" position= "-0.1 -0.3 0" rotation="90 0 0"></a-entity>
+      <a-entity id="model1" rotation="0 0 0" animation="property: rotation; to: 0 0 360; loop: true; dur: 10000" visible="false">
+         <a-entity gltf-model= "#santa" rotation="90 0 0" position="0.5 0.5 0" radius = "0.2"></a-entity>
+      </a-entity>
+  
+      </a-scene>
+     
+      
+    </xrextras-named-image-target>
+    <!--Back of Card-->
+     <xrextras-named-image-target name="v_christmas">
+      <a-entity 
+        xrextras-play-video="video: #HPChristmas; thumb: #christmasthumb; canstop: true"
+        geometry="primitive: plane; height: 0.75; width: 1;"
+      ></a-entity>
+    </xrextras-named-image-target>
+    
+  </a-scene>
+  
+   
